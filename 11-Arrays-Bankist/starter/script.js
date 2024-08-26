@@ -61,16 +61,160 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+
+  movements.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+      <div class="movements__row">
+        <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+        <div class="movements__value">${mov}</div>
+      </div>
+    `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+}
+displayMovements(account1.movements);
+
+const createUsernames = function (accts) {
+  accts.forEach(function(acct) {
+    acct.username = acct.owner.toLowerCase().split(' ').map(user => user[0]).join('');
+  })
+}
+createUsernames(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+
+// let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// console.log(arr.slice(2));
+// console.log(arr.slice(2, 4));
+// console.log(arr.slice(-2));
+// console.log(arr.slice(-1));
+// console.log(arr.slice(1, -2));
+// console.log([...arr]);
+
+// console.log(arr.splice(-2));
+// console.log('Here is the new arr' + arr);
+
+
+
+// let arr2 = ['j', 'i', 'h', 'g', 'f'];
+// console.log(arr2.reverse());
+// console.log(arr2);
+
+// const letters = arr.concat(arr2);
+// console.log(letters);
+// console.log([...arr, ...arr2]);
+
+// console.log(letters.join(' - '));
+
+
+// const arr = [23, 11, 64];
+// console.log(arr[0]);
+// console.log(arr.at(0));
+
+// console.log('Oluwadamisi'.at(-2));
+
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const [i, movement] of movements.entries()) {
+//   if (movement > 0) {
+//     console.log(`Movement ${i+1}: You deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${i+1}: You withdrew ${Math.abs(movement)}`);
+//   }
+// }
+
+
+// movements.forEach(function (movement, i, arr) {
+//   if (movement > 0) {
+//     console.log(`Movement ${i+1}: You deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${i+1}: You withdrew ${Math.abs(movement)}`);
+//   }
+// });
+
+
+
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
+
+
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// })
+
+// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+// console.log(currenciesUnique);
+
+// currenciesUnique.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// })
+
+
+// Challenge
+
+// function checkDogs (dogsJulia, dogsKate) {
+//   console.log('Printing julia dogs with incorrect data: ' + dogsJulia);
+//   const dogsJuliaCorrected = dogsJulia.slice();
+//   dogsJuliaCorrected.splice(0, 1);
+//   dogsJuliaCorrected.splice(-2);
+
+
+//   console.log('Printing julia dogs with correct data: ' + dogsJuliaCorrected);
+
+//   const dogs = dogsJuliaCorrected.concat(dogsKate);
+
+//   dogs.forEach(function (dog, i) {
+//     const str = dog < 3 ? 'still a puppy 🐶' : `an adult, and is ${dog} years old`;
+
+//     console.log(`Dog number ${i+1} is an ${str}`);
+//   });
+// };
+
+
+// const julia = [3, 5, 2, 12, 7];
+
+
+// console.log('--------- TEST DATA 1 --------')
+// checkDogs(julia, [4, 1, 15, 8, 3]);
+
+
+// console.log('--------- TEST DATA 2 --------');
+// checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4])
+
+// console.log(julia);
+
+
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// const eurToUsd = 1.1;
+
+// // const movementsUSD = movements.map(mov => mov * eurToUsd);
+// // console.log(movements);
+// // console.log(movementsUSD);
+
+// const movementsDescriptions = movements.map((mov, i) => `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
+// console.log(movementsDescriptions);
